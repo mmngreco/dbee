@@ -1,20 +1,18 @@
 from setuptools import setup, find_packages
-from os import path
 import versioneer
+from pathlib import Path
 
-here = path.abspath(path.dirname(__file__))
-
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
+here = Path(__file__).parent
+long_description = (here / 'README.md').read_text()
 
 setup(
-    name='dbee',
     version=versioneer.get_version(),
-    description='Sample project',
+    name='dbee',
+    description='SQLAlchemy CLI',
+    author='mmngreco',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/mmngreco/dbee',
-    author='mmngreco',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
@@ -26,8 +24,10 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3 :: Only',
     ],
-    package_dir={'': 'src'},
     packages=find_packages(where='src'),
+    package_dir={'': 'src'},
+    include_package_data=True,
+    zip_safe=True,
     python_requires='>=3.5, <4',
     install_requires=[],
 )

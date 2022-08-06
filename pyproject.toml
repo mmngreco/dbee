@@ -5,3 +5,6 @@
 # https://github.com/warner/python-versioneer/issues/192#issuecomment-623144826
 requires = ["setuptools>=40.8.0", "wheel", "versioneer-518"]
 build-backend = "setuptools.build_meta"
+
+[project.scripts]
+dbee = "dbee.cli:main"
