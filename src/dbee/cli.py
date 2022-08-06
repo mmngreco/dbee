@@ -1,9 +1,9 @@
 # from configparser import ConfigParser
 # import urllib
 from typing import Optional
+from sqlalchemy.exc import ArgumentError
 
 import pandas as pd
-import sqlalchemy as sa
 import sqlparse
 import typer
 from rich.console import Console
@@ -40,14 +40,38 @@ def dataframe2table(df, title=None):
 #     return params
 #
 
+def build_conn(conn_str, use="sa"):
+    use = use.lower()
+    # try:
+    #     return _sa_conn(conn_str)
+    # except ArgumentError:
+    #     return _pyodbc_conn(conn_str)
+    #
+    if use == "pyodbc":
+        return _pyodbc_conn(conn_str)
+    elif use in ["sa", "sqlalchemy"]:
+        return _sa_conn(conn_str)
 
-def _read(url, q, kw, verbose=False, console=None, style="table"):
+
+
+def _pyodbc_conn(url):
+    import pyodbc
+    con = pyodbc.connect(url)
+    return con
+
+
+def _sa_conn(url):
+    import sqlalchemy as sa
+    c = sa.create_engine(url)
+    con = c.connect()
+    return con
+
+
+def _read(url, q, use="sa", verbose=False, console=None, style="table"):
     q = format_query(q)
-    kw = default_kw(kw)
     style = style.lower()
 
-    c = sa.create_engine(url, connect_args=kw)
-    con = c.connect()
+    con = build_conn(url, use=use)
     out = pd.read_sql(q, con, parse_dates=True)
 
     if console is None:
@@ -89,22 +113,19 @@ def live():
     with Live(console=console, screen=False, auto_refresh=False) as live:
         url = live.console.input("url: ")
         live.refresh()
-        kw = live.console.input("kwargs: ")
-        live.refresh()
         while True:
             q = live.console.input("query: ")
-            _read(url, q, kw, console=live.console)
+            _read(url, q, console=live.console)
 
 
 @app.command()
 def read(
     url: str,
     query: str,
-    kwargs: Optional[str] = None,
     style: str = "table",
     v: bool = False,
 ):
-    _read(url, query, kwargs, console=console, style=style, verbose=v)
+    _read(url, query, console=console, style=style, verbose=v)
 
 
 @app.command()
