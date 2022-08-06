@@ -18,10 +18,6 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3 :: Only',
     ],
     packages=find_packages(where='src'),
@@ -29,5 +25,5 @@ setup(
     include_package_data=True,
     zip_safe=True,
     python_requires='>=3.5, <4',
-    install_requires=["typer"],
+    install_requires=["typer", "SQLAlchemy", "pyodbc", "tabulate", "rich" "sqlparse"],
 )
