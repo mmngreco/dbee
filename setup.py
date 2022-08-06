@@ -25,5 +25,12 @@ setup(
     include_package_data=True,
     zip_safe=True,
     python_requires='>=3.5, <4',
-    install_requires=["typer", "SQLAlchemy", "pyodbc", "tabulate", "rich" "sqlparse"],
+    install_requires=[
+        "typer",
+        "SQLAlchemy",
+        "pyodbc",
+        "tabulate",
+        "rich",
+        "sqlparse",
+    ],
 )
