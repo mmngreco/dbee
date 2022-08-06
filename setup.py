@@ -29,5 +29,5 @@ setup(
     include_package_data=True,
     zip_safe=True,
     python_requires='>=3.5, <4',
-    install_requires=[],
+    install_requires=["typer"],
 )

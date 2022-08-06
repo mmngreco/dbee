@@ -6,5 +6,13 @@
 requires = ["setuptools>=40.8.0", "wheel", "versioneer-518"]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "dbee"
+description = "CLI"
+readme = "README.md"
+keywords = []
+dynamic = [ "version", "requires-python", "classifiers", "dependencies",]
+
+
 [project.scripts]
-dbee = "dbee.cli:main"
+dbee = "dbee.cli:app"
