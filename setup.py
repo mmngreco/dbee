@@ -32,5 +32,6 @@ setup(
         "tabulate",
         "rich",
         "sqlparse",
+        "pandas",
     ],
 )
