@@ -22,8 +22,15 @@ pipx install git+https://github.com/mmngreco/dbee
 
 ```
 dbee --help
-dbee read "mssql+pyodbc://user:pass@host:1433/table?driver=FreeTDS" "select top 5 from table.users"
+dbee "mssql+pyodbc://user:pass@host:1433/table?driver=FreeTDS" "select top 5 from table.users"
+dbee "bigquery://my-project-id" "select * from dataset.table"
 ```
+
+
+> Note: I've removed `read` command and now it's the default behaviour.
+
+> Note **: bigquery support requires having the variable with the path to the
+> credentials.json.
 
 
 ## Pro-tips
@@ -32,8 +39,8 @@ dbee read "mssql+pyodbc://user:pass@host:1433/table?driver=FreeTDS" "select top 
 You can create alias in your `.bashrc`, as follows:
 
 ```bash
-alias dbms='dbee read "mssql+pyodbc://user:pass@host:1433/dbname?driver=FreeTDS"'
-alias dblite='dbee read "sqlite:///database.db'
+alias dbms='dbee "mssql+pyodbc://user:pass@host:1433/dbname?driver=FreeTDS"'
+alias dblite='dbee "sqlite:///database.db'
 ```
 
 And use them:
