@@ -26,12 +26,15 @@ setup(
     zip_safe=True,
     python_requires='>=3.5, <4',
     install_requires=[
-        "typer",
-        "SQLAlchemy",
-        "pyodbc",
-        "tabulate",
-        "rich",
-        "sqlparse",
         "pandas",
+        "psycopg2-binary",  # postgres support
+        "psycopg2",  # postgres support
+        "pyodbc",
+        "rich",
+        "SQLAlchemy",
+        "SQLAlchemy-bigquery",
+        "sqlparse",
+        "tabulate",
+        "typer",
     ],
 )
