@@ -28,7 +28,7 @@ setup(
     install_requires=[
         "pandas",
         "psycopg2-binary",  # postgres support
-        "psycopg2",  # postgres support
+        # "psycopg2",  # postgres support
         "pyodbc",
         "rich",
         "SQLAlchemy",
